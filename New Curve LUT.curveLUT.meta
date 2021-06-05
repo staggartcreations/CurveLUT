@@ -131,4 +131,5 @@ ScriptedImporter:
     preInfinity: 2
     postInfinity: 2
     rotationOrder: 4
+  wrapMode: 1
   autoApply: 0
