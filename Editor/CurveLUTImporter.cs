@@ -17,6 +17,8 @@ namespace CurveLUT
         public AnimationCurve curveB = AnimationCurve.Linear(0f, 0f, 1f, 1f);
         public AnimationCurve curveC = AnimationCurve.Linear(0f, 0f, 1f, 1f);
         public AnimationCurve curveD = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+
+        public bool autoApply;
         
         public override void OnImportAsset(AssetImportContext context)
         {
@@ -64,11 +66,13 @@ namespace CurveLUT
 
         public override void OnInspectorGUI()
         {
-            EditorGUI.BeginChangeCheck();
-            
             base.OnInspectorGUI();
-            
-            base.ApplyRevertGUI();
+
+            if (importer.autoApply && HasModified())
+            {
+                this.Apply();
+                AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(this.assetTarget));
+            }
         }
     }
 }
