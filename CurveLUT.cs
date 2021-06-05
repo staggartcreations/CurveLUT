@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CurveLUT
+namespace CurveLUTGenerator
 {
     public class CurveLUT
     {

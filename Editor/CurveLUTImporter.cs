@@ -8,7 +8,7 @@ using UnityEditor.AssetImporters;
 using UnityEditor.Experimental.AssetImporters;
 #endif
 
-namespace CurveLUT
+namespace CurveLUTGenerator
 {
     [ScriptedImporter(1, "curveLUT")]
     public class CurveLUTImporter : ScriptedImporter
