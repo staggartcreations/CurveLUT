@@ -19,15 +19,21 @@ namespace CurveLUTGenerator
         public AnimationCurve curveD = AnimationCurve.Linear(0f, 0f, 1f, 1f);
 
         [Space]
+        
         [Tooltip("If Clamp is used, and the LUT is sampled with a UV coordinate larger than 1, the far right value will be returned\n\n" +
                  "For Repeat, if the value exceeds 1, it will loop around")]
         public TextureWrapMode wrapMode = TextureWrapMode.Clamp;
+        [Tooltip("Enable DXT5 compression (not supported on iOS)")]
+        public bool compress = false;
+        
+        [Space]
+        
         [Tooltip("Auto apply the changes when changing curve values")]
         public bool autoApply;
         
         public override void OnImportAsset(AssetImportContext context)
         {
-            Texture2D lut = CurveLUT.Create(curveA, curveB, curveC, curveD, wrapMode);
+            Texture2D lut = CurveLUT.Create(curveA, curveB, curveC, curveD, wrapMode, compress);
 
             context.AddObjectToAsset("Look up Texture", lut);
             context.SetMainObject(lut);

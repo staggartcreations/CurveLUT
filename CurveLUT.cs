@@ -8,7 +8,7 @@ namespace CurveLUTGenerator
         //High resolutions aren't needed thanks to bilinear interpolation between texels
         private const int resolution = 256;
         
-        public static Texture2D Create(AnimationCurve curveA, AnimationCurve curveB, AnimationCurve curveC, AnimationCurve curveD, TextureWrapMode wrapMode = TextureWrapMode.Clamp)
+        public static Texture2D Create(AnimationCurve curveA, AnimationCurve curveB, AnimationCurve curveC, AnimationCurve curveD, TextureWrapMode wrapMode = TextureWrapMode.Clamp, bool compress = false)
         {
             //32-bit precision since curve values can exceed 1
             Texture2D LUTTex = new Texture2D(resolution, 8, TextureFormat.RGBAFloat, false, true)
@@ -37,6 +37,10 @@ namespace CurveLUTGenerator
                 }
             }
 
+            #if !UNITY_IOS && !UNITY_TVOS
+            if(compress) LUTTex.Compress(true);
+            #endif
+            
             LUTTex.Apply();
 
             return LUTTex;

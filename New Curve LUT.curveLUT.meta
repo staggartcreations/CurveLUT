@@ -132,4 +132,5 @@ ScriptedImporter:
     postInfinity: 2
     rotationOrder: 4
   wrapMode: 1
+  compress: 0
   autoApply: 0
